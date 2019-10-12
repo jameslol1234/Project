@@ -206,6 +206,18 @@ namespace Projekt
                 }
                 else if (MenuOpt == 8)
                 {
+                    if (File.Exists("3.txt"))
+                    {
+                        File.Delete("3.txt");
+                        Console.WriteLine("Deleted file: 3.txt");
+                    }
+                    if (File.Exists("statystyki.txt"))
+                    {
+                        File.Delete("statystyki.txt");
+                        Console.WriteLine("Deleted file: statystyki.txt");
+                    }
+                    Console.WriteLine("Exiting the program...");
+                    break;
                 }
                 else
                 {
