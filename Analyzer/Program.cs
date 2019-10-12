@@ -12,14 +12,40 @@ namespace Projekt
     {
         static void DLFile()
         {
-            Console.WriteLine("1. Download file from internet.");
-            string remoteUri = "https://s3.zylowski.net/public/input/";
-            string fileName = "3.txt";
             WebClient myWebClient = new WebClient();
-            string myStringWebResource = remoteUri + fileName;
-            Console.WriteLine("Downloading File \"{0}\" from \"{1}\" .......\n\n", fileName, myStringWebResource);
-            myWebClient.DownloadFile(myStringWebResource, fileName);
-            Console.WriteLine("Successfully Downloaded File \"{0}\" from \"{1}\"", fileName, myStringWebResource);
+            Console.WriteLine("1. Do u want to download file from internet?[y/n] ");
+            string Key = Console.ReadLine();
+            if (Key == "y")
+            {
+                Console.WriteLine("Write text file url adress: ");
+                string Adress = Console.ReadLine();
+                string fileName = "DLFile.txt";
+                try
+                {
+                    myWebClient.DownloadFile(Adress, fileName);
+                    Console.WriteLine("Downloaded file");
+                }
+                catch (WebException)
+                {
+                    Console.WriteLine("download failed. url not found");
+                }
+            }
+            if (Key == "n")
+            {
+                string FileText;
+                Console.WriteLine("Write file name in the same directory: ");
+                string FileName = Console.ReadLine();
+                try
+                {
+                    FileText = File.ReadAllText(FileName);
+                    Console.WriteLine(FileText);
+                }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine("Could not find file " +FileName);
+                }
+
+            }
         }
         static int CountLetters()
         {
@@ -120,7 +146,7 @@ namespace Projekt
             Console.WriteLine("TEXT ANALYZER");
             while (true)
             {
-                Console.WriteLine("\nMENU: \n1. Download file from internet.\n2. Count number of letters in the file.\n3. Count number of words in the file.\n4. Count number of punctuation marks in the file.\n5. Count number of sentences in the file.\n6. Report about usage of letters (A-Z).\n7. Save statistics from points 2-5 to the file(statystki.txt)\n8. Exit and close application.\n");
+                Console.WriteLine("\nMENU: \n1. Select file.\n2. Count number of letters in the file.\n3. Count number of words in the file.\n4. Count number of punctuation marks in the file.\n5. Count number of sentences in the file.\n6. Report about usage of letters (A-Z).\n7. Save statistics from points 2-5 to the file(statystki.txt)\n8. Exit and close application.\n");
                 Console.Write("Choose option to execute: ");
                 int MenuOpt;
                 if (!int.TryParse(Console.ReadLine(), out MenuOpt))
