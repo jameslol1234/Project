@@ -46,8 +46,29 @@ namespace Projekt
             Console.WriteLine("Count of letters in file: " + LettersQty);
             return 0;
         }
-        
-        
+
+        static int CountWords()
+        {
+            Console.WriteLine("3. Count number of words in the file.");
+            string FileText;
+            try
+            {
+                FileText = File.ReadAllText("3.txt");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Could not find file 3.txt");
+                return 1;
+            }
+            string[] Words = FileText.Split(' ');
+            int WordsQty = 0;
+            foreach (string word in Words)
+            {
+                WordsQty++;
+            }
+            Console.WriteLine("Number of words is: " + WordsQty);
+            return 0;
+        }
         
         static void Main(string[] args)
         {
@@ -72,7 +93,7 @@ namespace Projekt
                 }
                 else if (MenuOpt == 3)
                 {
-                 
+                    if (CountWords() == 1) continue;
                 }
                 else if (MenuOpt == 4)
                 {
