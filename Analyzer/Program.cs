@@ -46,7 +46,6 @@ namespace Projekt
             Console.WriteLine("Count of letters in file: " + LettersQty);
             return 0;
         }
-
         static int CountWords()
         {
             Console.WriteLine("3. Count number of words in the file.");
@@ -67,6 +66,31 @@ namespace Projekt
                 WordsQty++;
             }
             Console.WriteLine("Number of words is: " + WordsQty);
+            return 0;
+        }
+        static int CountPuncMarks()
+        {
+            Console.WriteLine("4. Count number of punctuation marks in the file.");
+            string FileText;
+            try
+            {
+                FileText = File.ReadAllText("3.txt");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Could not find file 3.txt");
+                return 1;
+            }
+
+            int PuncMarksQty = 0;
+            foreach (char c in FileText)
+            {
+                if (char.IsPunctuation(c))
+                {
+                    PuncMarksQty++;
+                }
+            }
+            Console.WriteLine("Count of punctuation marks in file: " + PuncMarksQty);
             return 0;
         }
         
@@ -97,7 +121,7 @@ namespace Projekt
                 }
                 else if (MenuOpt == 4)
                 {
-                 
+                    if (CountPuncMarks() == 1) continue;
                 }
                 else if (MenuOpt == 5)
                 {
