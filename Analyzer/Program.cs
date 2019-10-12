@@ -151,7 +151,31 @@ namespace Projekt
                 else if (MenuOpt == 6)
                 {
                     Console.WriteLine("6. Report about usage of letters (A-Z).");
-                    
+                    int[] c = new int[(int)char.MaxValue];
+                    string FileText;
+                    try
+                    {
+                        FileText = File.ReadAllText("3.txt");
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        Console.WriteLine("Could not find file 3.txt");
+                        continue;
+                    }
+                    foreach (char t in FileText)
+                    {
+                        c[(int)t]++;
+                    }
+                    for (int i = 0; i < (int)char.MaxValue; i++)
+                    {
+                        if (c[i] > 0 &&
+                            char.IsLetter((char)i))
+                        {
+                            Console.WriteLine("{0} : {1}",
+                                (char)i,
+                                c[i]);
+                        }
+                    }
                 }
                 else if (MenuOpt == 7)
                 {
