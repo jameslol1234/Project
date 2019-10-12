@@ -93,7 +93,28 @@ namespace Projekt
             Console.WriteLine("Count of punctuation marks in file: " + PuncMarksQty);
             return 0;
         }
-        
+        static int CountSentence()
+        {
+            Console.WriteLine("5. Count number of sentences in the file.");
+            string FileText;
+            try
+            {
+                FileText = File.ReadAllText("3.txt");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Could not find file 3.txt");
+                return 1;
+            }
+            string[] Words = FileText.Split('.', '?', ';', '!');
+            int SentenceQty = 0;
+            foreach (string word in Words)
+            {
+                SentenceQty++;
+            }
+            Console.WriteLine("Number of sentences is: " + SentenceQty);
+            return 0;
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("TEXT ANALYZER");
@@ -125,7 +146,7 @@ namespace Projekt
                 }
                 else if (MenuOpt == 5)
                 {
-                 
+                    if (CountSentence() == 1) continue;
                 }
                 else if (MenuOpt == 6)
                 {
