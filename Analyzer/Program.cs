@@ -3,11 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
+using System.IO;
 
-namespace Analyzer
+namespace Projekt
 {
     class Program
     {
+        static void DLFile()
+        {
+            Console.WriteLine("1. Download file from internet.");
+            string remoteUri = "https://s3.zylowski.net/public/input/";
+            string fileName = "3.txt";
+            WebClient myWebClient = new WebClient();
+            string myStringWebResource = remoteUri + fileName;
+            Console.WriteLine("Downloading File \"{0}\" from \"{1}\" .......\n\n", fileName, myStringWebResource);
+            myWebClient.DownloadFile(myStringWebResource, fileName);
+            Console.WriteLine("Successfully Downloaded File \"{0}\" from \"{1}\"", fileName, myStringWebResource);
+        }
+        
+        
+        
+        
         static void Main(string[] args)
         {
             Console.WriteLine("TEXT ANALYZER");
@@ -23,44 +40,34 @@ namespace Analyzer
                 }
                 if (MenuOpt == 1)
                 {
-                    Console.WriteLine("1. Download file from internet.");
-                    Console.WriteLine("add some code here...");
-                    continue;
+                    DLFile();
                 }
                 else if (MenuOpt == 2)
                 {
-                    Console.WriteLine("2. Count number of letters in the file.");
-                    Console.WriteLine("add some code here...");
+                 
                 }
                 else if (MenuOpt == 3)
                 {
-                    Console.WriteLine("3. Count number of words in the file.");
-                    Console.WriteLine("add some code here...");
+                 
                 }
                 else if (MenuOpt == 4)
                 {
-                    Console.WriteLine("4. Count number of punctuation marks in the file.");
-                    Console.WriteLine("add some code here...");
+                 
                 }
                 else if (MenuOpt == 5)
                 {
-                    Console.WriteLine("5. Count number of sentences in the file.");
-                    Console.WriteLine("add some code here...");
+                 
                 }
                 else if (MenuOpt == 6)
                 {
                     Console.WriteLine("6. Report about usage of letters (A-Z).");
-                    Console.WriteLine("add some code here...");
+                    
                 }
                 else if (MenuOpt == 7)
                 {
-                    Console.WriteLine("7. Save statistics from points 2-5 to the file(statystki.txt)");
-                    Console.WriteLine("add some code here...");
                 }
                 else if (MenuOpt == 8)
                 {
-                    Console.WriteLine("Exiting the program...");
-                    break;
                 }
                 else
                 {
@@ -70,6 +77,7 @@ namespace Analyzer
             }
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey(true);
+
         }
     }
 }
