@@ -46,6 +46,7 @@ namespace Projekt
             Console.WriteLine("Count of letters in file: " + LettersQty);
             return 0;
         }
+
         static int CountWords()
         {
             Console.WriteLine("3. Count number of words in the file.");
@@ -68,7 +69,6 @@ namespace Projekt
             Console.WriteLine("Number of words is: " + WordsQty);
             return 0;
         }
-        
         
         static void Main(string[] args)
         {
