@@ -21,7 +21,31 @@ namespace Projekt
             myWebClient.DownloadFile(myStringWebResource, fileName);
             Console.WriteLine("Successfully Downloaded File \"{0}\" from \"{1}\"", fileName, myStringWebResource);
         }
-        
+        static int CountLetters()
+        {
+            Console.WriteLine("2. Count number of letters in the file.");
+            string FileText;
+            try
+            {
+                FileText = File.ReadAllText("3.txt");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Could not find file 3.txt");
+                return 1;
+            }
+
+            int LettersQty = 0;
+            foreach (char c in FileText)
+            {
+                if (!char.IsWhiteSpace(c) && char.IsLetter(c))
+                {
+                    LettersQty++;
+                }
+            }
+            Console.WriteLine("Count of letters in file: " + LettersQty);
+            return 0;
+        }
         
         
         
@@ -44,7 +68,7 @@ namespace Projekt
                 }
                 else if (MenuOpt == 2)
                 {
-                 
+                    if (CountLetters() == 1) continue;
                 }
                 else if (MenuOpt == 3)
                 {
