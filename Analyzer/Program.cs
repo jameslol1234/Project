@@ -21,8 +21,53 @@ namespace Projekt
             myWebClient.DownloadFile(myStringWebResource, fileName);
             Console.WriteLine("Successfully Downloaded File \"{0}\" from \"{1}\"", fileName, myStringWebResource);
         }
-        
-        
+        static int CountLetters()
+        {
+            Console.WriteLine("2. Count number of letters in the file.");
+            string FileText;
+            try
+            {
+                FileText = File.ReadAllText("3.txt");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Could not find file 3.txt");
+                return 1;
+            }
+
+            int LettersQty = 0;
+            foreach (char c in FileText)
+            {
+                if (!char.IsWhiteSpace(c) && char.IsLetter(c))
+                {
+                    LettersQty++;
+                }
+            }
+            Console.WriteLine("Count of letters in file: " + LettersQty);
+            return 0;
+        }
+        static int CountWords()
+        {
+            Console.WriteLine("3. Count number of words in the file.");
+            string FileText;
+            try
+            {
+                FileText = File.ReadAllText("3.txt");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Could not find file 3.txt");
+                return 1;
+            }
+            string[] Words = FileText.Split(' ');
+            int WordsQty = 0;
+            foreach (string word in Words)
+            {
+                WordsQty++;
+            }
+            Console.WriteLine("Number of words is: " + WordsQty);
+            return 0;
+        }
         
         
         static void Main(string[] args)
@@ -44,11 +89,11 @@ namespace Projekt
                 }
                 else if (MenuOpt == 2)
                 {
-                 
+                    if (CountLetters() == 1) continue;
                 }
                 else if (MenuOpt == 3)
                 {
-                 
+                    if (CountWords() == 1) continue;
                 }
                 else if (MenuOpt == 4)
                 {
