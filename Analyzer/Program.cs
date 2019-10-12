@@ -179,6 +179,30 @@ namespace Projekt
                 }
                 else if (MenuOpt == 7)
                 {
+                    Console.WriteLine("7. Save statistics from points 2-5 to the file(statystki.txt)");
+                    FileStream ostrm;
+                    StreamWriter writer;
+                    TextWriter oldOut = Console.Out;
+                    try
+                    {
+                        ostrm = new FileStream("./statystyki.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                        writer = new StreamWriter(ostrm);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Cannot open statystyki.txt for writing");
+                        Console.WriteLine(e.Message);
+                        return;
+                    }
+                    Console.SetOut(writer);
+                    CountLetters();
+                    CountWords();
+                    CountPuncMarks();
+                    CountSentence();
+                    Console.SetOut(oldOut);
+                    writer.Close();
+                    ostrm.Close();
+                    Console.WriteLine("Saving to file done!");
                 }
                 else if (MenuOpt == 8)
                 {
