@@ -42,7 +42,7 @@ namespace Projekt
                 }
                 catch (FileNotFoundException)
                 {
-                    Console.WriteLine("Could not find file " +FileName);
+                    Console.WriteLine("Could not find file " + FileName);
                 }
 
             }
@@ -111,7 +111,7 @@ namespace Projekt
             int PuncMarksQty = 0;
             foreach (char c in FileText)
             {
-                if (char.IsPunctuation(c))
+                if (c == '?' || c == '.')
                 {
                     PuncMarksQty++;
                 }
