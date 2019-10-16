@@ -220,7 +220,7 @@ namespace Projekt
                 }
                 else if (MenuOpt == 6)
                 {
-                    Console.WriteLine("6. Report about usage of letters (A-Z).");
+                    Console.WriteLine("6. Report about usage of letters (A-Z), words and sentences.");
                     if (fileName == null)
                     {
                         Console.WriteLine("You haven't selected file yet!! Do it now!");
@@ -241,16 +241,46 @@ namespace Projekt
                     {
                         c[(int)t]++;
                     }
+                    Console.WriteLine("Vowels in the file text:");
+                    for (int i = 0; i < (int)char.MaxValue; i++)
+                    {
+                        if ((char)i == 'a' || (char)i == 'e' || (char)i == 'i' || (char)i == 'o' || (char)i == 'u' || (char)i == 'A' || (char)i == 'E' || (char)i == 'I' || (char)i == 'O' || (char)i == 'U')
+                        {
+                            Console.WriteLine("{0} : {1}",
+                                (char)i,
+                                c[i]);
+                            c[i] = -1;
+                        }
+                            
+                    }
+                    Console.WriteLine("Consonants in the file text:");
                     for (int i = 0; i < (int)char.MaxValue; i++)
                     {
                         if (c[i] > 0 &&
-                            char.IsLetter((char)i))
+                                char.IsLetter((char)i) && c[i] != -1)
                         {
                             Console.WriteLine("{0} : {1}",
                                 (char)i,
                                 c[i]);
                         }
                     }
+
+                    string[] Words = FileText.Split(' ');
+                    int WordsQty = 0;
+                    foreach (string word in Words)
+                    {
+                        if (word.Length == 1) continue;
+                        WordsQty++;
+                    }
+                    Console.WriteLine("REMINDER: Single letters are not counted towards number of words!");
+                    Console.WriteLine("Number of words is: " + WordsQty);
+                    string[] Sentences = Regex.Split(FileText, @"[^\.\?]*[\.\?]");
+                    int SentenceQty = 0;
+                    foreach (string word in Sentences)
+                    {
+                        SentenceQty++;
+                    }
+                    Console.WriteLine("Number of sentences is: " + SentenceQty);
                 }
                 else if (MenuOpt == 7)
                 {
