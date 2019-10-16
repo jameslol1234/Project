@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Projekt
 {
@@ -174,7 +175,7 @@ namespace Projekt
                 Console.WriteLine("Could not find file "+fileName);
                 return 1;
             }
-            string[] Words = FileText.Split('.', '?', ';', '!');
+            string[] Words = Regex.Split(FileText, @"[^\.\?]*[\.\?]");
             int SentenceQty = 0;
             foreach (string word in Words)
             {
