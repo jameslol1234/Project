@@ -148,7 +148,7 @@ namespace Projekt
             int PuncMarksQty = 0;
             foreach (char c in FileText)
             {
-                if (char.IsPunctuation(c))
+                if (c == '?' || c == '.')
                 {
                     PuncMarksQty++;
                 }
