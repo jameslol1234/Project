@@ -78,16 +78,23 @@ namespace Projekt
                 Console.WriteLine("Could not find file " + fileName);
                 return 1;
             }
-
-            int LettersQty = 0;
-            foreach (char c in FileText)
+            int i, len, vowel, cons;
+            vowel = 0;
+            cons = 0;
+            len = FileText.Length;
+            for (i = 0; i < len; i++)
             {
-                if (!char.IsWhiteSpace(c) && char.IsLetter(c))
+                if (FileText[i] == 'a' || FileText[i] == 'e' || FileText[i] == 'i' || FileText[i] == 'o' || FileText[i] == 'u' || FileText[i] == 'A' || FileText[i] == 'E' || FileText[i] == 'I' || FileText[i] == 'O' || FileText[i] == 'U')
                 {
-                    LettersQty++;
+                    vowel++;
+                }
+                else if ((FileText[i] >= 'a' && FileText[i] <= 'z') || (FileText[i] >= 'A' && FileText[i] <= 'Z'))
+                {
+                    cons++;
                 }
             }
-            Console.WriteLine("Count of letters in file: " + LettersQty);
+            Console.Write("\nNumber of vowel in the file is : {0}\n", vowel);
+            Console.Write("Number of consonant in the file is : {0}\n\n", cons);
             return 0;
         }
         static int CountWords(string fileName)
