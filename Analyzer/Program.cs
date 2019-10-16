@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Projekt
 {
@@ -78,7 +79,23 @@ namespace Projekt
                 Console.WriteLine("Could not find file " + fileName);
                 return 1;
             }
-
+            int i, len, vowel, cons;
+            vowel = 0;
+            cons = 0;
+            len = FileText.Length;
+            for (i = 0; i < len; i++)
+            {
+                if (FileText[i] == 'a' || FileText[i] == 'e' || FileText[i] == 'i' || FileText[i] == 'o' || FileText[i] == 'u' || FileText[i] == 'A' || FileText[i] == 'E' || FileText[i] == 'I' || FileText[i] == 'O' || FileText[i] == 'U')
+                {
+                    vowel++;
+                }
+                else if ((FileText[i] >= 'a' && FileText[i] <= 'z') || (FileText[i] >= 'A' && FileText[i] <= 'Z'))
+                {
+                    cons++;
+                }
+            }
+            Console.Write("\nNumber of vowel in the file is : {0}\n", vowel);
+            Console.Write("Number of consonant in the file is : {0}\n\n", cons);
             int LettersQty = 0;
             foreach (char c in FileText)
             {
@@ -112,8 +129,10 @@ namespace Projekt
             int WordsQty = 0;
             foreach (string word in Words)
             {
+                if (word.Length == 1) continue;
                 WordsQty++;
             }
+            Console.WriteLine("REMINDER: Single letters are not counted towards number of words!");
             Console.WriteLine("Number of words is: " + WordsQty);
             return 0;
         }
@@ -139,7 +158,7 @@ namespace Projekt
             int PuncMarksQty = 0;
             foreach (char c in FileText)
             {
-                if (char.IsPunctuation(c))
+                if (c == '?' || c == '.')
                 {
                     PuncMarksQty++;
                 }
@@ -165,7 +184,7 @@ namespace Projekt
                 Console.WriteLine("Could not find file "+fileName);
                 return 1;
             }
-            string[] Words = FileText.Split('.', '?', ';', '!');
+            string[] Words = Regex.Split(FileText, @"[^\.\?]*[\.\?]");
             int SentenceQty = 0;
             foreach (string word in Words)
             {
