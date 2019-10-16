@@ -119,8 +119,10 @@ namespace Projekt
             int WordsQty = 0;
             foreach (string word in Words)
             {
+                if (word.Length == 1) continue;
                 WordsQty++;
             }
+            Console.WriteLine("REMINDER: Single letters are not counted towards number of words!");
             Console.WriteLine("Number of words is: " + WordsQty);
             return 0;
         }
