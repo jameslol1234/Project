@@ -96,15 +96,6 @@ namespace Projekt
             }
             Console.Write("\nNumber of vowel in the file is : {0}\n", vowel);
             Console.Write("Number of consonant in the file is : {0}\n\n", cons);
-            int LettersQty = 0;
-            foreach (char c in FileText)
-            {
-                if (!char.IsWhiteSpace(c) && char.IsLetter(c))
-                {
-                    LettersQty++;
-                }
-            }
-            Console.WriteLine("Count of letters in file: " + LettersQty);
             return 0;
         }
         static int CountWords(string fileName)
